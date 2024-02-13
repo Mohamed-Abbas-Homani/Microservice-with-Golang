@@ -6,12 +6,11 @@ import (
 	"fmt"
 	"math/rand"
 	"net/http"
+
+	"github.com/Mohamed-Abbas-Homani/microservice/types"
 )
 
-type PriceResponse struct {
-	Ticker string  `json:"ticker"`
-	Price  float64 `json:"price"`
-}
+
 
 type ApiFunc func(context.Context, http.ResponseWriter, *http.Request) error
 
@@ -41,7 +40,7 @@ func (s *JSONAPIServer) handleFetchPrice(ctx context.Context, w http.ResponseWri
 		return err
 	}
 
-	priceRes := PriceResponse{
+	priceRes := types.PriceResponse{
 		Price:  price,
 		Ticker: ticker,
 	}

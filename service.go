@@ -25,7 +25,7 @@ var priceMocker = map[string]float64{
 func MocPriceFetcher(ctx context.Context, ticker string) (float64, error) {
 	price, ok := priceMocker[ticker]
 	if !ok {
-		return price, fmt.Errorf("the given ticker %sis not supported", ticker)
+		return price, fmt.Errorf("the given ticker %s is not supported", ticker)
 	}
 
 	return price, nil
