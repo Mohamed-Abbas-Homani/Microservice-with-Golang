@@ -10,8 +10,6 @@ import (
 	"github.com/Mohamed-Abbas-Homani/microservice/types"
 )
 
-
-
 type ApiFunc func(context.Context, http.ResponseWriter, *http.Request) error
 
 type JSONAPIServer struct {

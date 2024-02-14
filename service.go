@@ -4,12 +4,13 @@ import (
 	"context"
 	"fmt"
 )
+
 // PriceFetcher is an interface that can fetch a price.
 type PriceFetcher interface {
 	FetchPrice(context.Context, string) (float64, error)
 }
 
-//	priceFetcher implements the PriceFetcher interface.
+// priceFetcher implements the PriceFetcher interface.
 type priceFetcher struct{}
 
 func (s *priceFetcher) FetchPrice(ctx context.Context, ticker string) (float64, error) {
