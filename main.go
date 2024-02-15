@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"flag"
-	"fmt"
 	"log"
 	"time"
 
@@ -15,10 +14,9 @@ func main() {
 	var (
 		jsonAddr = flag.String("json", ":3000", "the port the json server is running on")
 		grpcAddr = flag.String("grpc", ":4000", "the port the grpc server is running on")
-		svc = NewLoggingService(&priceFetcher{})
-		ctx = context.Background()
+		svc      = NewLoggingService(&priceFetcher{})
+		ctx      = context.Background()
 	)
-
 
 	flag.Parse()
 
@@ -26,15 +24,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
-	go func ()  {
-		time.Sleep(3*time.Second)
-		res, err := grpcClient.FetchPrice(ctx, &proto.PriceRequest{Ticker: "ETH"})
+
+	go func() {
+		time.Sleep(3 * time.Second)
+		_, err := grpcClient.FetchPrice(ctx, &proto.PriceRequest{Ticker: "EUR"})
 		if err != nil {
 			log.Fatal(err)
 		}
-
-		fmt.Printf("%+v\n", res)
 	}()
 
 	go makeGRPCServer(*grpcAddr, svc)

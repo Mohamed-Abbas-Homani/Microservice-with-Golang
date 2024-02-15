@@ -26,7 +26,7 @@ func NewJSONAPIServer(listenAddr string, svc PriceFetcher) *JSONAPIServer {
 
 func (s *JSONAPIServer) Run() {
 	http.HandleFunc("/", makeHTTPHandlerFunc(s.handleFetchPrice))
-	fmt.Printf("Server is running on port %s", s.listenAddr)
+	fmt.Printf("Server is running on port %s\n", s.listenAddr)
 	http.ListenAndServe(s.listenAddr, nil)
 }
 
