@@ -1,13 +1,13 @@
 package main
 
 import (
-	"context"
+	// "context"
 	"flag"
-	"log"
-	"time"
+	// "log"
+	// "time"
 
-	"github.com/Mohamed-Abbas-Homani/microservice/client"
-	"github.com/Mohamed-Abbas-Homani/microservice/proto"
+	// "github.com/Mohamed-Abbas-Homani/microservice/client"
+	// "github.com/Mohamed-Abbas-Homani/microservice/proto"
 )
 
 func main() {
@@ -15,23 +15,24 @@ func main() {
 		jsonAddr = flag.String("json", ":3000", "the port the json server is running on")
 		grpcAddr = flag.String("grpc", ":4000", "the port the grpc server is running on")
 		svc      = NewLoggingService(&priceFetcher{})
-		ctx      = context.Background()
+		// ctx      = context.Background()
 	)
 
 	flag.Parse()
 
-	grpcClient, err := client.NewGRPCClient(":4000")
-	if err != nil {
-		log.Fatal(err)
-	}
+//GRPC Client Test
+	// grpcClient, err := client.NewGRPCClient(":4000")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	go func() {
-		time.Sleep(3 * time.Second)
-		_, err := grpcClient.FetchPrice(ctx, &proto.PriceRequest{Ticker: "EUR"})
-		if err != nil {
-			log.Fatal(err)
-		}
-	}()
+	// go func() {
+	// 	time.Sleep(3 * time.Second)
+	// 	_, err := grpcClient.FetchPrice(ctx, &proto.PriceRequest{Ticker: "EUR"})
+	// 	if err != nil {
+	// 		log.Fatal(err)
+	// 	}
+	// }()
 
 	go makeGRPCServer(*grpcAddr, svc)
 	jsonServer := NewJSONAPIServer(*jsonAddr, svc)

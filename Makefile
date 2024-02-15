@@ -1,8 +1,8 @@
 build:
-	go build -o bin/priceFetcher
+	go build -o bin/currencyFetcher
 
 run: build
-	bin/priceFetcher
+	bin/currencyFetcher
 
 proto:
 	protoc --go_out=. --go_opt=paths=source_relative \

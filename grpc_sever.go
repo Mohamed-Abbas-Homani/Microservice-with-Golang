@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"math/rand"
 	"net"
 
@@ -20,7 +21,7 @@ func makeGRPCServer(listenAddr string, svc PriceFetcher) error {
 	opts := []grpc.ServerOption{}
 	server := grpc.NewServer(opts...)
 	proto.RegisterPriceFetcherServer(server, grpcPriceFetcher)
-
+	fmt.Printf("GRPC Server is Running on port %s\n", listenAddr)
 	return server.Serve(ln)
 }
 

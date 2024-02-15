@@ -12,6 +12,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
+//GRPC client
 func NewGRPCClient(remoteAddr string) (proto.PriceFetcherClient, error) {
 	conn, err := grpc.Dial(remoteAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
@@ -33,6 +34,7 @@ func New(endpoint string) *Client {
 	}
 }
 
+//Client fetching logic
 func (c *Client) FetchPrice(ctx context.Context, ticker string) (*types.PriceResponse, error) {
 	endpoint := fmt.Sprintf("%s?ticker=%s", c.endpoint, ticker)
 

@@ -17,6 +17,7 @@ type PriceFetcher interface {
 // priceFetcher implements the PriceFetcher interface.
 type priceFetcher struct{}
 
+// the fetching service logic
 func (s *priceFetcher) FetchPrice(ctx context.Context, ticker string) (float64, error) {
 	apiKey := "gfnYJdIavCcbaPYCANqwYTXbEpiFf8L4"
 	baseCurrency := "USD"
