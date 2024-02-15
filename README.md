@@ -1,3 +1,2 @@
 # Microservice-with-Golang
-# Microservice-PriceFetcher
-# Microservice-PriceFetcher
+## A microservice that fetch currency
